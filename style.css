@@ -1,0 +1,1065 @@
+/* ============================================================
+   TIME — Birthday Experience  ·  style.css
+   Colors: #0B0B0B | #D4AF37 | #F5EFE6
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #0B0B0B;
+  --gold: #D4AF37;
+  --gold-lo: rgba(212, 175, 55, 0.25);
+  --cream: #F5EFE6;
+  --text: #D9D0C5;
+  --text-lo: rgba(217, 208, 197, 0.45);
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'DM Sans', system-ui, sans-serif;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Utility ──────────────────────────────────────────────── */
+.op-0 {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.fade-in {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  transition: opacity 1s ease !important;
+}
+
+.fade-in-slow {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  transition: opacity 1.6s ease !important;
+}
+
+/* ── Sparkle Canvas ───────────────────────────────────────── */
+.sparkle-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 1;
+  transition: opacity 1.4s ease;
+}
+
+.sparkle-canvas.hidden {
+  opacity: 0;
+}
+
+/* ── Music Toggle ─────────────────────────────────────────── */
+
+.music-toggle {
+  position: fixed;
+  bottom: 1.4rem;
+  right: 1.4rem;
+  z-index: 200;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  border-radius: 50%;
+  background: rgba(11, 11, 11, 0.75);
+  color: var(--gold);
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s, opacity 0.6s;
+  backdrop-filter: blur(4px);
+}
+
+.music-toggle:hover {
+  background: var(--gold);
+  color: var(--bg);
+}
+
+.music-toggle.muted {
+  opacity: 0.4;
+}
+
+
+/* ── Scene System ─────────────────────────────────────────── */
+.scene {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.8rem;
+  padding: 3rem 2rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1.1s ease;
+  z-index: 10;
+  text-align: center;
+  overflow: hidden;
+}
+
+.scene.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.scene.fade-out {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* ── Buttons ──────────────────────────────────────────────── */
+.cta-btn {
+  padding: 0.65rem 2.2rem;
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  background: transparent;
+  color: var(--gold);
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s, border-color 0.3s, opacity 0.8s;
+}
+
+.cta-btn:hover {
+  background: var(--gold);
+  color: var(--bg);
+  border-color: var(--gold);
+}
+
+.cta-btn.small {
+  padding: 0.5rem 1.6rem;
+  font-size: 0.68rem;
+}
+
+.cta-btn.gold-btn {
+  background: var(--gold);
+  color: var(--bg);
+  border-color: var(--gold);
+}
+
+.cta-btn.gold-btn:hover {
+  background: transparent;
+  color: var(--gold);
+}
+
+/* ════════════════════════════════════════════════════════════
+   SCENE 1 — OPENING
+════════════════════════════════════════════════════════════ */
+.text-seq {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.seq-line {
+  font-family: var(--serif);
+  font-size: clamp(1.3rem, 3.5vw, 2.1rem);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--text);
+  opacity: 0;
+  transition: opacity 1.4s ease;
+  line-height: 1.85;
+}
+
+.seq-line.vis {
+  opacity: 1;
+}
+
+/* ════════════════════════════════════════════════════════════
+   SCENE 2 — THE BEGINNING
+════════════════════════════════════════════════════════════ */
+.scene-prose {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.prose-line {
+  font-family: var(--serif);
+  font-size: clamp(1.05rem, 2.5vw, 1.55rem);
+  font-weight: 300;
+  color: var(--text);
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 1.1s ease, transform 1.1s ease;
+  max-width: 580px;
+  line-height: 1.75;
+}
+
+.prose-line.vis {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#b2 {
+  transition-delay: 0.7s;
+}
+
+/* ════════════════════════════════════════════════════════════
+   SCENE 3 — GIFT VIDEO
+════════════════════════════════════════════════════════════ */
+.eyebrow {
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.75;
+}
+
+.video-ph {
+  width: min(480px, 88vw);
+  aspect-ratio: 16/9;
+  border: 1px dashed var(--gold-lo);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: var(--text-lo);
+  font-size: 0.82rem;
+}
+
+.video-ph-icon {
+  font-size: 2rem;
+  color: var(--gold-lo);
+}
+
+.video-ph code {
+  font-size: 0.68rem;
+  opacity: 0.6;
+}
+
+.gift-video {
+  width: min(480px, 88vw);
+  border: 1px solid var(--gold-lo);
+}
+
+.narration {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.narration-line {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(0.9rem, 2vw, 1.15rem);
+  color: var(--text-lo);
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.narration-line.vis {
+  opacity: 1;
+}
+
+#n2 {
+  transition-delay: 0.9s;
+}
+
+/* ════════════════════════════════════════════════════════════
+   SCENE 4 — TEST OF TIME
+════════════════════════════════════════════════════════════ */
+.tl-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.tl-line {
+  font-family: var(--serif);
+  font-size: clamp(1.5rem, 4.5vw, 2.8rem);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--text);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+  line-height: 1.4;
+}
+
+.tl-line.vis {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tl-gold {
+  color: var(--gold);
+  font-style: normal;
+  font-weight: 400;
+}
+
+.tap-hint {
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-lo);
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.tap-hint.hidden {
+  opacity: 0;
+}
+
+#s-timeline {
+  cursor: pointer;
+  transition: opacity 1.1s ease, background 1.5s ease;
+}
+
+#s-timeline.golden-glow {
+  background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.09) 0%, transparent 68%);
+}
+
+/* ════════════════════════════════════════════════════════════
+   SCENE 5 — SPIN WHEEL
+════════════════════════════════════════════════════════════ */
+.wheel-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wheel-pointer {
+  font-size: 1.1rem;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 0.15rem;
+}
+
+#wheel-canvas {
+  width: min(320px, 78vw);
+  height: min(320px, 78vw);
+  display: block;
+}
+
+.spin-btn {
+  padding: 0.7rem 2.8rem;
+  border: 1px solid var(--gold);
+  background: transparent;
+  color: var(--gold);
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+
+.spin-btn:hover:not(:disabled) {
+  background: var(--gold);
+  color: var(--bg);
+}
+
+.spin-btn:disabled {
+  opacity: 0.28;
+  cursor: default;
+}
+
+.spin-counter {
+  font-size: 0.68rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-lo);
+}
+
+/* Spin result overlays */
+.spin-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 60;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.9s ease;
+  padding: 2rem;
+}
+
+.spin-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.dark-ov {
+  background: #000;
+}
+
+.spin-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.8rem;
+  max-width: 520px;
+  width: 100%;
+}
+
+.memory-ph {
+  width: min(340px, 84vw);
+  aspect-ratio: 4/3;
+  border: 1px dashed var(--gold-lo);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 2rem;
+  color: var(--text-lo);
+}
+
+.memory-ph small {
+  font-size: 0.68rem;
+  font-family: var(--sans);
+}
+
+.memory-img {
+  width: min(340px, 84vw);
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  border: 1px solid var(--gold-lo);
+}
+
+.memory-caption {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--text);
+  max-width: 380px;
+}
+
+.letter-title {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  font-style: italic;
+  color: var(--gold);
+}
+
+.letter-box {
+  border: 1px solid var(--gold-lo);
+  padding: 1.8rem 2rem;
+  max-width: 460px;
+  width: 100%;
+  text-align: left;
+}
+
+.letter-box p {
+  font-family: var(--serif);
+  font-size: 0.98rem;
+  font-weight: 300;
+  color: var(--text);
+  line-height: 1.9;
+}
+
+.special-line {
+  font-family: var(--serif);
+  font-size: clamp(1.3rem, 4vw, 2rem);
+  font-style: italic;
+  color: var(--gold);
+  transition: opacity 1.6s ease;
+}
+
+/* ════════════════════════════════════════════════════════════
+   SCENE 5 — OUR MEMORIES (Cinematic Photo Gallery)
+════════════════════════════════════════════════════════════ */
+.mem-scene {
+  padding: 0;
+  gap: 0;
+  background: #000;
+}
+
+.mem-slides {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.mem-slide {
+  position: absolute;
+  inset: 0;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Visible resting state */
+.mem-slide.active {
+  opacity: 1;
+  pointer-events: auto;
+  animation: kenBurns 9s ease-out forwards;
+}
+
+/* ── Slide-in animations (override kenBurns while entering) ── */
+.mem-slide.active.slide-from-right {
+  animation: slideFromRight 0.42s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.mem-slide.active.slide-from-left {
+  animation: slideFromLeft 0.42s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* ── Slide-out animations ── */
+.mem-slide.slide-to-left {
+  animation: slideToLeft 0.38s cubic-bezier(0.55, 0, 0.1, 1) forwards;
+}
+
+.mem-slide.slide-to-right {
+  animation: slideToRight 0.38s cubic-bezier(0.55, 0, 0.1, 1) forwards;
+}
+
+@keyframes slideFromRight {
+  from {
+    transform: translateX(100%);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideFromLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideToLeft {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+@keyframes slideToRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.mem-slide-ph {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 2rem;
+  color: rgba(212, 175, 55, 0.3);
+  font-family: var(--sans);
+}
+
+.mem-slide-ph small {
+  font-size: 0.65rem;
+  color: rgba(212, 175, 55, 0.3);
+}
+
+@keyframes kenBurns {
+  0% {
+    transform: scale(1) translate(0, 0);
+  }
+
+  100% {
+    transform: scale(1.04) translate(-1%, -0.8%);
+  }
+}
+
+@keyframes kenBurnsAlt {
+  0% {
+    transform: scale(1) translate(0, 0);
+  }
+
+  100% {
+    transform: scale(1.04) translate(1%, 0.8%);
+  }
+}
+
+
+
+/* Caption gradient bar */
+.mem-caption-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 5rem 2rem 2.5rem;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.88));
+  z-index: 5;
+  pointer-events: none;
+}
+
+.mem-caption-text {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(0.9rem, 2.2vw, 1.2rem);
+  color: rgba(217, 208, 197, 0.9);
+  text-align: center;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.7s ease 0.4s, transform 0.7s ease 0.4s;
+}
+
+.mem-caption-text.vis {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Progress dots */
+.mem-dots {
+  position: absolute;
+  top: 1.4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.4rem;
+  z-index: 6;
+}
+
+.mem-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(212, 175, 55, 0.3);
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s;
+  padding: 0;
+}
+
+.mem-dot.active {
+  background: var(--gold);
+}
+
+/* Prev / Next arrows */
+.mem-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: rgba(212, 175, 55, 0.55);
+  font-size: 2.8rem;
+  cursor: pointer;
+  z-index: 6;
+  padding: 0.5rem 1rem;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.mem-nav:hover {
+  color: var(--gold);
+}
+
+.mem-prev {
+  left: 0.5rem;
+}
+
+.mem-next {
+  right: 0.5rem;
+}
+
+/* Exit button */
+.mem-done-btn {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 6;
+  background: rgba(11, 11, 11, 0.6);
+  backdrop-filter: blur(4px);
+  transition: opacity 0.8s ease;
+}
+
+
+/* ════════════════════════════════════════════════════════════
+   SCENE 7 — FLOWER FINALE
+════════════════════════════════════════════════════════════ */
+.cream-scene {
+  background: radial-gradient(ellipse at 50% 30%, #FDF5EC 0%, #F0E4D4 45%, #E8D5BE 100%);
+  color: #3A2E26;
+  transition: opacity 1.1s ease;
+  gap: 1.2rem;
+  overflow-y: auto;
+  justify-content: flex-start;
+  padding-top: 3.5rem;
+}
+
+/* Subtle warm grain texture overlay */
+.cream-scene::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 15% 18%, rgba(212, 175, 55, 0.07) 0%, transparent 45%),
+    radial-gradient(circle at 85% 78%, rgba(180, 130, 100, 0.06) 0%, transparent 40%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.cream-scene .cta-btn.gold-btn {
+  background: var(--gold);
+  color: var(--bg);
+  border-color: var(--gold);
+}
+
+.confetti-canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.flower-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  z-index: 2;
+}
+
+.flower-line {
+  font-family: var(--serif);
+  font-size: clamp(1.05rem, 3vw, 1.65rem);
+  font-weight: 300;
+  color: #3A2E26;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.flower-line.vis {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-i="1"] {
+  transition-delay: 0.5s;
+}
+
+[data-i="2"] {
+  transition-delay: 1s;
+}
+
+.flower-svg {
+  width: min(150px, 42vw);
+  height: min(150px, 42vw);
+  z-index: 2;
+  transition: opacity 0.6s ease;
+}
+
+.flower-svg.vis {
+  opacity: 1 !important;
+}
+
+/* Petal bloom animation */
+.petal {
+  fill: #B87080;
+  opacity: 0;
+  transform-origin: 0px 0px;
+}
+
+.petal:nth-child(1) {
+  animation: petalIn 0.45s ease forwards 0.1s;
+}
+
+.petal:nth-child(2) {
+  animation: petalIn 0.45s ease forwards 0.25s;
+}
+
+.petal:nth-child(3) {
+  animation: petalIn 0.45s ease forwards 0.4s;
+}
+
+.petal:nth-child(4) {
+  animation: petalIn 0.45s ease forwards 0.55s;
+}
+
+.petal:nth-child(5) {
+  animation: petalIn 0.45s ease forwards 0.7s;
+}
+
+.petal:nth-child(6) {
+  animation: petalIn 0.45s ease forwards 0.85s;
+}
+
+.petal:nth-child(7) {
+  animation: petalIn 0.45s ease forwards 1.0s;
+}
+
+.petal:nth-child(8) {
+  animation: petalIn 0.45s ease forwards 1.15s;
+}
+
+.flower-center {
+  fill: var(--gold);
+  opacity: 0;
+  animation: petalIn 0.35s ease forwards 1.3s;
+}
+
+@keyframes petalIn {
+  from {
+    opacity: 0;
+    transform: scale(0.15);
+  }
+
+  to {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+}
+
+.surprise-btn {
+  z-index: 10;
+  position: relative;
+}
+
+/* ════════════════════════════════════════════════════════════
+   MINI ENDING TEXT
+════════════════════════════════════════════════════════════ */
+.mini-ending {
+  position: relative;
+  z-index: 5;
+  text-align: center;
+  margin-top: -2rem;
+  /* Bring it up slightly closer to the flower */
+}
+
+.mini-ending-text {
+  font-family: var(--serif);
+  font-size: clamp(1.25rem, 3.5vw, 1.8rem);
+  font-weight: 300;
+  color: #3A2E26;
+  margin-bottom: 0.6rem;
+  line-height: 1.4;
+}
+
+/* ════════════════════════════════════════════════════════════
+   CHILDHOOD GALLERY  (Live Auto-Scrolling Carousel)
+════════════════════════════════════════════════════════════ */
+.child-gallery {
+  position: absolute;
+  bottom: 5vh;
+  /* Position at the bottom of the screen */
+  width: 100vw;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 1s ease;
+  padding: 1rem 0;
+}
+
+.child-gallery.vis {
+  opacity: 1 !important;
+}
+
+/* The track that holds all the photos and scrolls */
+.carousel-track {
+  display: flex;
+  gap: 1.5rem;
+  width: max-content;
+  /* Animate seamlessly from 0 to -50% (half the duplicated length) */
+  animation: scrollLeft 40s linear infinite;
+  padding: 0 1rem;
+}
+
+/* Pause animation on hover for better interaction */
+.child-gallery:hover .carousel-track {
+  animation-play-state: paused;
+}
+
+.child-photo,
+.child-photo-ph {
+  height: clamp(180px, 22vh, 280px);
+  /* Responsive fixed height */
+  width: auto;
+  aspect-ratio: 1 / 1;
+  border-radius: 4px;
+  border: 4px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 5px 18px rgba(70, 45, 25, 0.18);
+  /* slight alternating rotation via JS */
+  transform: rotate(var(--rot, 0deg));
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.child-photo:hover,
+.child-photo-ph:hover {
+  transform: rotate(0deg) scale(1.15) !important;
+  box-shadow: 0 15px 35px rgba(70, 45, 25, 0.4);
+  z-index: 10;
+}
+
+.child-photo-ph {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  font-size: 1.3rem;
+  color: rgba(130, 90, 60, 0.35);
+  background: rgba(255, 255, 255, 0.38);
+  border: 2px dashed rgba(160, 110, 70, 0.28);
+}
+
+.child-photo-ph small {
+  font-size: 0.48rem;
+  font-family: var(--sans);
+  color: rgba(130, 90, 60, 0.35);
+  max-width: 75px;
+  text-align: center;
+}
+
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* ════════════════════════════════════════════════════════════
+   INFO MODAL (SURPRISE MESSAGE)
+════════════════════════════════════════════════════════════ */
+.pw-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 7, 6, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 300;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+  padding: 2rem;
+}
+
+.pw-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.pw-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  border: 1px solid rgba(212, 175, 55, 0.28);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  border-radius: 6px;
+}
+
+.pw-close {
+  position: absolute;
+  top: 0.8rem;
+  right: 1.2rem;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1.6rem;
+  font-weight: 300;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0.5rem;
+  transition: color 0.3s, transform 0.2s;
+}
+
+.pw-close:hover {
+  color: var(--gold);
+  transform: scale(1.1);
+}
+
+.pw-eyebrow {
+  font-family: var(--sans);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.pw-hint {
+  font-family: var(--serif);
+  font-style: italic;
+  line-height: 1.6;
+}
+
+.pw-box .cta-btn {
+  padding: 0.65rem 2.8rem;
+}
+
+@keyframes fadeU {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 0.75;
+    transform: translateY(0);
+  }
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .scene {
+    padding: 2rem 1.2rem;
+    gap: 1.3rem;
+  }
+
+  .letter-box {
+    padding: 1.2rem 1rem;
+  }
+}

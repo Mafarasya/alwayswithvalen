@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For You — February 25, 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- Music is synthesized / loaded via script.js — no HTML audio element needed -->
+  <button class="music-toggle op-0" id="music-toggle" title="Toggle music">♪</button>
+
+  <!-- Sparkle canvas — covers all dark scenes -->
+  <canvas id="sparkle-canvas" class="sparkle-canvas"></canvas>
+
+  <!-- ══════════════════════════════════════════════════════════
+       SCENE 1 — OPENING
+  ══════════════════════════════════════════════════════════ -->
+  <section id="s-opening" class="scene active">
+    <div class="text-seq">
+      <p class="seq-line" id="sq1">Time is strange.</p>
+      <p class="seq-line" id="sq2">It passes without asking.</p>
+      <p class="seq-line" id="sq3">But sometimes…</p>
+      <p class="seq-line" id="sq4">It gives you someone.</p>
+    </div>
+    <button class="cta-btn op-0" id="btn-enter">Enter</button>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
+       SCENE 2 — THE BEGINNING
+  ══════════════════════════════════════════════════════════ -->
+  <section id="s-beginning" class="scene">
+    <div class="scene-prose">
+      <p class="prose-line" id="b1">23 years ago, the world received you.</p>
+      <p class="prose-line" id="b2">I just happened to meet you somewhere along the way.</p>
+    </div>
+    <button class="cta-btn" id="btn-c1">Continue</button>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
+       SCENE 3 — TEST OF TIME  (Interactive tap reveal)
+  ══════════════════════════════════════════════════════════ -->
+  <section id="s-timeline" class="scene">
+    <div class="tl-wrap">
+      <p class="tl-line" data-i="0">We met.</p>
+      <p class="tl-line" data-i="1">We stayed.</p>
+      <p class="tl-line" data-i="2">We fought.</p>
+      <p class="tl-line" data-i="3">We chose each other.</p>
+      <p class="tl-line" data-i="4">We grew.</p>
+      <p class="tl-line tl-gold" data-i="5">And now you're 23.</p>
+    </div>
+    <p class="tap-hint" id="tap-hint">tap to continue</p>
+    <button class="cta-btn op-0" id="btn-c3">Continue</button>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
+       SCENE 4 — OUR MEMORIES  (Cinematic Photo Gallery)
+  ══════════════════════════════════════════════════════════ -->
+  <section id="s-memories" class="scene mem-scene">
+    <div class="mem-slides" id="mem-slides"></div>
+    <div class="mem-caption-bar">
+      <p class="mem-caption-text" id="mem-caption-text"></p>
+    </div>
+    <div class="mem-dots" id="mem-dots"></div>
+    <button class="mem-nav mem-prev" id="mem-prev">‹</button>
+    <button class="mem-nav mem-next" id="mem-next">›</button>
+    <button class="cta-btn op-0 mem-done-btn" id="btn-mem-done">Continue →</button>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       SCENE 6 — FLOWER FINALE  (cream, childhood photos, confetti)
+  ══════════════════════════════════════════════════════════ -->
+  <section id="s-flower" class="scene cream-scene">
+    <canvas id="mini-confetti" class="confetti-canvas"></canvas>
+
+    <!-- Poetic closing lines -->
+    <div class="flower-text">
+      <p class="flower-line" data-i="0">And if time ever feels heavy…</p>
+      <p class="flower-line" data-i="1">I'll still be here.</p>
+      <p class="flower-line" data-i="2">Choosing you.</p>
+    </div>
+
+    <!-- Flower bloom -->
+    <svg class="flower-svg op-0" id="flower-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <g transform="translate(100,100)">
+        <ellipse class="petal" cx="0" cy="-38" rx="13" ry="28" />
+        <ellipse class="petal" cx="0" cy="-38" rx="13" ry="28" transform="rotate(45)" />
+        <ellipse class="petal" cx="0" cy="-38" rx="13" ry="28" transform="rotate(90)" />
+        <ellipse class="petal" cx="0" cy="-38" rx="13" ry="28" transform="rotate(135)" />
+        <ellipse class="petal" cx="0" cy="-38" rx="13" ry="28" transform="rotate(180)" />
+        <ellipse class="petal" cx="0" cy="-38" rx="13" ry="28" transform="rotate(225)" />
+        <ellipse class="petal" cx="0" cy="-38" rx="13" ry="28" transform="rotate(270)" />
+        <ellipse class="petal" cx="0" cy="-38" rx="13" ry="28" transform="rotate(315)" />
+        <circle class="flower-center" cx="0" cy="0" r="18" />
+      </g>
+    </svg>
+
+    <!-- ══ MINI ENDING (shown on the 25th) ══ -->
+    <div class="mini-ending op-0" id="mini-ending">
+      <p class="mini-ending-text">Happy birthday.</p>
+      <p class="mini-ending-text">I wish I could be there today.</p>
+      <p class="mini-ending-text">But some things<br />are better shown in person.</p>
+    </div>
+
+    <!-- Childhood photo gallery — appears below the text -->
+    <div class="child-gallery op-0" id="child-gallery"></div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
+       SURPRISE MODAL (Information Modal)
+  ══════════════════════════════════════════════════════════ -->
+  <div class="pw-overlay" id="surprise-overlay">
+    <div class="pw-box" style="padding: 2.5rem 1.5rem;">
+      <button class="pw-close" id="surprise-close" title="Close">✕</button>
+      <p class="pw-eyebrow" style="font-size: 0.85rem;">✨ One More Thing ✨</p>
+      <p class="pw-hint" style="font-size: 1.25rem; margin: 1.5rem 0; color: #D6C9B3;">
+        Your real surprise will you see 25 Feb Tonight.
+      </p>
+      <button class="cta-btn gold-btn" id="surprise-ok" style="margin-top: 1rem;">Can't wait! 🤍</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
